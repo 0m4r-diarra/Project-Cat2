@@ -42,8 +42,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link active" href="contact.html">Contact</a>
                 </li>
+                
 
             </ul>
 
@@ -84,35 +89,41 @@
 
                     <hr>
 
-                    <form>
+                    <form id="contactForm">
 
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Enter your name">
-                        </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold">Full Name</label>
+        <input type="text" 
+               id="contactName"
+               class="form-control" 
+               required
+               placeholder="Enter your name">
+    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email"
-                                   class="form-control"
-                                   placeholder="Enter your email">
-                        </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold">Email</label>
+        <input type="email" 
+               id="contactEmail"
+               class="form-control" 
+               required
+               placeholder="Enter your email">
+    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control"
-                                      rows="4"
-                                      placeholder="Write your message"></textarea>
-                        </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold">Message</label>
+        <textarea id="contactMessage"
+                  class="form-control" 
+                  rows="4" 
+                  required
+                  placeholder="Write your message"></textarea>
+        <div class="form-text text-muted">Please write a message of at least 10 characters.</div>
+    </div>
 
-                        <button type="submit"
-                                class="btn btn-success">
-                            Send Message
-                        </button>
+    <button type="submit" class="btn btn-success">
+        Send Message
+    </button>
 
-                    </form>
+</form>
 
                 </div>
 
@@ -131,6 +142,9 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
 
 </body>
 </html>
