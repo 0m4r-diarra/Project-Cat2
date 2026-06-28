@@ -1,43 +1,106 @@
 /* SmartSaver Custom Styles */
+
+/* --- 1. Global & Typography --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Upgraded to a modern, clean font */
+    background-color: #f8f9fa; /* Preserved your original background[cite: 5] */
+    display: flex; /* Preserved flexbox layout[cite: 5] */
+    flex-direction: column; /* Preserved flex-direction[cite: 5] */
+    min-height: 100vh; /* Preserved minimum height[cite: 5] */
+    -webkit-font-smoothing: antialiased;
 }
 
 main {
-    flex: 1;
+    flex: 1; /* Preserved main flex property[cite: 5] */
 }
 
-/* Interactive Goal Cards for Registration */
-.goal-card {
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    border: 2px solid #dee2e6;
-    border-radius: 10px;
+/* --- 2. Navigation Tweaks --- */
+.navbar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Added a soft drop shadow */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Preserved font size[cite: 5] */
+    letter-spacing: 0.5px; /* Slightly tightened letter spacing[cite: 5] */
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+/* Replaced basic underline[cite: 5] with a modern sliding indicator */
+.nav-link.active {
+    font-weight: 600; /* Preserved bold weight[cite: 5] */
+    position: relative;
+    text-decoration: none; 
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 3px;
     background-color: white;
+    border-radius: 3px;
+}
+
+/* --- 3. Interactive Goal Cards (Registration Page) --- */
+.goal-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smoothed out original transitions[cite: 5] */
+    border: 2px solid #dee2e6; /* Preserved original border[cite: 5] */
+    border-radius: 12px; /* Preserved and softened border radius[cite: 5] */
+    background-color: white; /* Preserved white background[cite: 5] */
 }
 
 .goal-card:hover {
-    transform: translateY(-5px);
-    border-color: #198754; /* Bootstrap Success Green */
-    box-shadow: 0 5px 15px rgba(25, 135, 84, 0.2);
+    transform: translateY(-6px); /* Slightly increased lift[cite: 5] */
+    border-color: #198754; /* Preserved Bootstrap Success Green[cite: 5] */
+    box-shadow: 0 8px 20px rgba(25, 135, 84, 0.15); /* Softened the green glow[cite: 5] */
 }
 
 .goal-card.active {
-    background-color: #d1e7dd;
-    border-color: #198754;
-    color: #0f5132;
+    background-color: #d1e7dd; /* Preserved active background[cite: 5] */
+    border-color: #198754; /* Preserved active border[cite: 5] */
+    color: #0f5132; /* Preserved active text color[cite: 5] */
+    transform: scale(1.03); /* Added a slight pop effect when selected */
 }
 
-/* Navigation Tweaks */
-.navbar-brand {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
+/* --- 4. General Feature Cards (Homepage) --- */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
 }
-.nav-link.active {
-    font-weight: bold;
-    text-decoration: underline;
-    text-underline-offset: 5px;
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* --- 5. Button Enhancements --- */
+.btn {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #146c43;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+}
+
+/* --- 6. Form Input Polish --- */
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25); /* Custom green focus ring */
 }
