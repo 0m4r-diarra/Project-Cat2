@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    // --- 1. GOAL CARD SELECTION LOGIC ---
+    // --- 1. GOAL CARD SELECTION LOGIC (Registration Page) ---
     const goalCards = document.querySelectorAll(".goal-card");
     const hiddenGoalInput = document.getElementById("savingGoal");
 
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const lastName = document.getElementById("lastname").value.trim();
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value.trim();
+            const phone = document.getElementById("phone").value.trim();
             const savingGoal = hiddenGoalInput ? hiddenGoalInput.value : "";
 
             if (!firstName || !lastName) {
@@ -38,6 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            if (!phone) {
+                alert("Please enter your phone number.");
+                return;
+            }
+
             if (password.length < 6) {
                 alert("Password must be at least 6 characters long.");
                 return;
@@ -48,10 +54,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            // Save to localStorage
+            localStorage.setItem('smartSaverUser', firstName);
             alert(`Welcome to SmartSaver, ${firstName}! Your account is active and your goal is set to: ${savingGoal}.`);
             
             if (goalCards) goalCards.forEach(c => c.classList.remove("active"));
-            registerForm.reset(); 
+            registerForm.reset();
+            
+            // Redirect to home page
+            window.location.href = 'index.html';
         });
     }
 
@@ -84,15 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             alert(`Thank you, ${contactName}! Your inquiry has been received.`);
             contactForm.reset();
-            const phone = document.getElementById("phone").value.trim();
-
-if (!phone) {
-    alert("Please enter your phone number.");
-    return;
-}
         });
     }
-    // --- 4. REGISTER NEW SAVINGS GOAL LOGIC ---
+
+    // --- 4. REGISTER NEW SAVINGS GOAL LOGIC (Goals Page) ---
     const addGoalForm = document.getElementById("addGoalForm");
     const activeGoalsList = document.getElementById("activeGoalsList");
     const emptyGoalMsg = document.getElementById("emptyGoalMsg");
@@ -111,7 +117,7 @@ if (!phone) {
                 alert("Please give your savings goal a name.");
                 return;
             }
-            if (!category) {
+            if (!category || category === "Choose...") {
                 alert("Please select a category for your goal.");
                 return;
             }
@@ -119,12 +125,6 @@ if (!phone) {
                 alert("Please enter a valid target amount in KES.");
                 return;
             }
-            const phone = document.getElementById("phone").value.trim();
-
-if (!phone) {
-    alert("Please enter your phone number.");
-    return;
-}
 
             // Remove the "empty" message if it exists
             if (emptyGoalMsg) {
@@ -152,32 +152,38 @@ if (!phone) {
             `;
 
             // Add the new card to the page
-            activeGoalsList.appendChild(goalCard);
+            if (activeGoalsList) {
+                activeGoalsList.appendChild(goalCard);
+            }
 
             // Notify user and reset form
             alert(`Success! Your goal '${title}' for KES ${formattedAmount} has been registered.`);
             addGoalForm.reset();
         });
     }
-   
 
-
-// --- Local Storage Registration Logic ---
-const registerForm = document.getElementById('registrationForm');
-if (registerForm) {
-    registerForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Stop page reload
-        
-        const firstName = document.getElementById('fname').value.trim();
-        if (firstName) {
-            // Save the name in the browser
-            localStorage.setItem('smartSaverUser', firstName);
-            alert(`Welcome aboard, ${firstName}! Your account is set up.`);
-            window.location.href = 'index.html'; // Send them to the homepage
+    // --- 5. LOCAL STORAGE - DISPLAY USER NAME ON HOME PAGE ---
+    const userNameElement = document.getElementById("userNameDisplay");
+    if (userNameElement) {
+        const savedUser = localStorage.getItem('smartSaverUser');
+        if (savedUser) {
+            userNameElement.textContent = `Welcome back, ${savedUser}!`;
         }
-    });
-}
+    }
 
+    // --- 6. DARK MODE TOGGLE (Optional Enhancement) ---
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+            // Save preference
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem('darkMode', isDark);
+        });
 
-
+        // Check saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    }
 });
