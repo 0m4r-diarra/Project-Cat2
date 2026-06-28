@@ -84,6 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             alert(`Thank you, ${contactName}! Your inquiry has been received.`);
             contactForm.reset();
+            const phone = document.getElementById("phone").value.trim();
+
+if (!phone) {
+    alert("Please enter your phone number.");
+    return;
+}
         });
     }
     // --- 4. REGISTER NEW SAVINGS GOAL LOGIC ---
@@ -113,6 +119,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Please enter a valid target amount in KES.");
                 return;
             }
+            const phone = document.getElementById("phone").value.trim();
+
+if (!phone) {
+    alert("Please enter your phone number.");
+    return;
+}
 
             // Remove the "empty" message if it exists
             if (emptyGoalMsg) {
