@@ -173,4 +173,29 @@ if (darkModeBtn) {
         }
     });
 }
+// --- Local Storage Registration Logic ---
+const registerForm = document.getElementById('registrationForm');
+if (registerForm) {
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop page reload
+        
+        const firstName = document.getElementById('fname').value.trim();
+        if (firstName) {
+            // Save the name in the browser
+            localStorage.setItem('smartSaverUser', firstName);
+            alert(`Welcome aboard, ${firstName}! Your account is set up.`);
+            window.location.href = 'index.html'; // Send them to the homepage
+        }
+    });
+}
+
+// --- Homepage Welcome Logic ---
+const mainHeadline = document.querySelector('h1.display-4');
+if (mainHeadline) {
+    // Check if we have a saved user
+    const savedUser = localStorage.getItem('smartSaverUser');
+    if (savedUser) {
+        mainHeadline.textContent = `Welcome back, ${savedUser}!`;
+    }
+}
 });
