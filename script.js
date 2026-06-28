@@ -159,20 +159,9 @@ if (!phone) {
             addGoalForm.reset();
         });
     }
-    // --- Dark Mode Logic ---
-const darkModeBtn = document.getElementById('darkModeToggle');
-if (darkModeBtn) {
-    darkModeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        
-        // Change the button icon text
-        if (document.body.classList.contains('dark-mode')) {
-            darkModeBtn.textContent = ' Light Mode';
-        } else {
-            darkModeBtn.textContent = ' Dark Mode';
-        }
-    });
-}
+   
+
+
 // --- Local Storage Registration Logic ---
 const registerForm = document.getElementById('registrationForm');
 if (registerForm) {
@@ -189,13 +178,6 @@ if (registerForm) {
     });
 }
 
-// --- Homepage Welcome Logic ---
-const mainHeadline = document.querySelector('h1.display-4');
-if (mainHeadline) {
-    // Check if we have a saved user
-    const savedUser = localStorage.getItem('smartSaverUser');
-    if (savedUser) {
-        mainHeadline.textContent = `Welcome back, ${savedUser}!`;
-    }
-}
+
+
 });
