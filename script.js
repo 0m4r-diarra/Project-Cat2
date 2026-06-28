@@ -159,4 +159,18 @@ if (!phone) {
             addGoalForm.reset();
         });
     }
+    // --- Dark Mode Logic ---
+const darkModeBtn = document.getElementById('darkModeToggle');
+if (darkModeBtn) {
+    darkModeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        // Change the button icon text
+        if (document.body.classList.contains('dark-mode')) {
+            darkModeBtn.textContent = ' Light Mode';
+        } else {
+            darkModeBtn.textContent = ' Dark Mode';
+        }
+    });
+}
 });
